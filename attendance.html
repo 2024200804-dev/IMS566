@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+
+        <div class="container">
+
+            <!-- Logo -->
+            <a class="navbar-brand" href="#">
+
+            <img
+            src="logo.png"
+            class="navbar-logo"
+            alt="Smart Campus Logo">
+            Smart Campus
+            </a>
+
+            <!-- Mobile Button -->
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav">
+
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Menu -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="dashboard.html">Dashboard</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link active" href="attendance.html">
+                    Attendance
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="assignments.html">
+                    Assignments
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="timetable.html">
+                    Timetable
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">
+                    Logout
+                </a>
+            </li>
+
+            </ul>
+
+                <!-- Dark Mode Button -->
+                <button class="dark-mode-toggle ms-3" id="darkModeToggle">
+                    <i class="bi bi-moon-stars-fill" id="darkModeIcon"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <script>
+
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeIcon = document.getElementById('darkModeIcon');
+    const htmlElement = document.documentElement;
+
+    /* Check Saved Theme */
+    const currentTheme = localStorage.getItem('theme') || 'light';
+
+    htmlElement.setAttribute('data-bs-theme', currentTheme);
+
+    updateIcon(currentTheme);
+
+    /* Toggle Theme */
+    darkModeToggle.addEventListener('click', () => {
+
+        const currentTheme = htmlElement.getAttribute('data-bs-theme');
+
+        const newTheme =
+            currentTheme === 'light'
+            ? 'dark'
+            : 'light';
+
+        htmlElement.setAttribute('data-bs-theme', newTheme);
+
+        localStorage.setItem('theme', newTheme);
+
+        updateIcon(newTheme);
+
+    });
+
+    /* Update Icon */
+    function updateIcon(theme){
+
+        if(theme === 'dark'){
+
+            darkModeIcon.classList.remove('bi-moon-stars-fill');
+
+            darkModeIcon.classList.add('bi-sun-fill');
+
+        }
+
+        else{
+
+            darkModeIcon.classList.remove('bi-sun-fill');
+
+            darkModeIcon.classList.add('bi-moon-stars-fill');
+
+        }
+
+    }
+
+    </script>
+
+<div class="container my-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold">Attendance Records</h2>
+
+        </div>
+
+        <button class="btn attendance-btn">
+            Overall Attendance: 91%
+        </button>
+    </div>
+
+
+
+        <!-- BUTTON -->
+        <div class="mb-4">
+
+<button
+class="btn view-btn active"
+id="tableBtn"
+onclick="showTable()">
+
+<i class="bi bi-table"></i>
+Table
+
+</button>
+
+
+<button
+class="btn view-btn"
+id="chartBtn"
+onclick="showChart()">
+
+<i class="bi bi-bar-chart-fill"></i>
+Chart
+
+</button>
+
+</div>
+
+
+<!-- TABLE VIEW -->
+<div
+        id="tableView"
+        class="attendance-card">
+
+        <div class="table-responsive">
+
+        <table class="table attendance-table">
+
+        <thead>
+
+        <tr>
+
+        <th>Subject</th>
+        <th>Total Classes</th>
+        <th>Attended</th>
+        <th>Percentage</th>
+        <th>Status</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr>
+        <td><span class="subject-code">IMS566</span></td>
+        <td>14</td>
+        <td>13</td>
+        <td>
+        <div class="progress attendance-progress">
+
+        <div
+        class="progress-bar progress-92">
+
+        92%
+
+        </div>
+
+        </div>
+        </td>
+
+        <td>
+        <span class="status excellent">
+        Excellent
+        </span>
+        </td>
+
+        </tr>
+
+
+        <tr>
+
+        <td>
+        <span class="subject-code">
+        IMS563
+        </span>
+        </td>
+
+        <td>14</td>
+
+        <td>14</td>
+
+        <td>
+
+        <div class="progress attendance-progress">
+
+        <div
+        class="progress-bar progress-100">
+
+        100%
+
+        </div>
+
+        </div>
+
+        </td>
+
+        <td>
+        <span class="status excellent">
+        Excellent
+        </span>
+        </td>
+
+        </tr>
+
+
+        <tr>
+
+        <td>
+        <span class="subject-code">
+        IMS564
+        </span>
+        </td>
+
+        <td>14</td>
+
+        <td>12</td>
+
+        <td>
+
+        <div class="progress attendance-progress">
+
+        <div
+        class="progress-bar progress-85">
+
+        85%
+
+        </div>
+
+        </div>
+
+        </td>
+
+        <td>
+
+        <span class="status good">
+
+        Good
+
+        </span>
+
+        </td>
+
+        </tr>
+
+
+        <tr>
+
+        <td>
+        <span class="subject-code">
+        IMS560
+        </span>
+        </td>
+
+        <td>14</td>
+
+        <td>13</td>
+
+        <td>
+
+        <div class="progress attendance-progress">
+
+        <div
+        class="progress-bar progress-92">
+
+        92%
+
+        </div>
+
+        </div>
+
+        </td>
+
+        <td>
+
+        <span class="status excellent">
+
+        Excellent
+
+        </span>
+
+        </td>
+
+        </tr>
+
+
+        <tr>
+
+        <td>
+        <span class="subject-code">
+        TMC501
+        </span>
+        </td>
+
+        <td>14</td>
+
+        <td>11</td>
+
+        <td>
+
+        <div class="progress attendance-progress">
+
+        <div
+        class="progress-bar progress-78">
+
+        78%
+
+        </div>
+
+        </div>
+
+        </td>
+
+        <td>
+
+        <span class="status warning">
+
+        Warning
+
+        </span>
+
+        </td>
+
+        </tr>
+
+
+        <tr>
+
+        <td>
+        <span class="subject-code">
+        LCC501
+        </span>
+        </td>
+
+        <td>14</td>
+
+        <td>14</td>
+
+        <td>
+
+        <div class="progress attendance-progress">
+
+        <div
+        class="progress-bar progress-100">
+
+        100%
+
+        </div>
+
+        </div>
+
+        </td>
+
+        <td>
+
+        <span class="status excellent">
+
+        Excellent
+
+        </span>
+
+        </td>
+
+        </tr>
+
+        </tbody>
+
+        </table>
+
+        </div>
+
+        </div>
+
+
+<!-- CHART VIEW -->
+        <div
+        id="chartView"
+        class="card shadow-sm border-0 p-4"
+        style="display:none;">
+
+            <h4 class="mb-4">
+            Attendance Overview
+            </h4>
+
+            <canvas
+                id="attendanceChart"
+                height="120">
+            </canvas>
+
+        </div>
+
+
+<footer class="footer">
+
+<p>
+Copyright © 2026 Nurul Farhanah Omar. All Rights Reserved
+</p>
+
+<p class="footer-sub">
+
+Best viewed in Chrome | 1920×1080 resolution
+
+</p>
+
+<p class="footer-date">
+
+Last updated: May 2026
+
+</p>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+let chartLoaded=false;
+
+function showChart(){
+
+document.getElementById(
+'tableView'
+).style.display='none';
+
+document.getElementById(
+'chartView'
+).style.display='block';
+
+
+document
+.getElementById(
+'chartBtn'
+)
+.classList
+.add('active');
+
+
+document
+.getElementById(
+'tableBtn'
+)
+.classList
+.remove('active');
+
+
+if(!chartLoaded){
+
+loadChart();
+
+chartLoaded=true;
+
+}
+}
+
+
+function showTable(){
+
+document.getElementById(
+'tableView'
+).style.display='block';
+
+document.getElementById(
+'chartView'
+).style.display='none';
+
+
+document
+.getElementById(
+'tableBtn'
+)
+.classList
+.add('active');
+
+
+document
+.getElementById(
+'chartBtn'
+)
+.classList
+.remove('active');
+
+}
+
+
+function loadChart(){
+
+const ctx=
+document
+.getElementById(
+'attendanceChart'
+);
+
+new Chart(ctx,{
+
+type:'bar',
+
+data:{
+
+labels:[
+'IMS566',
+'IMS563',
+'IMS564',
+'IMS560',
+'TMC501',
+'LCC501'
+],
+
+datasets:[{
+
+label:'Attendance %',
+
+data:[
+92,
+100,
+85,
+92,
+78,
+100
+],
+
+backgroundColor:[
+
+'#501260',
+'#7E367A',
+'#B05994',
+'#E37DAC',
+'#D3848C',
+'#FFB1C4'
+
+],
+
+borderRadius:15
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+
+legend:{
+display:false
+}
+
+},
+
+scales:{
+
+y:{
+beginAtZero:true,
+max:100
+}
+
+}
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
